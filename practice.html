@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Selection</title>
+    <style>
+        body {
+            background-image: url('imageswebdes/background.png');
+            background-size: cover;
+        }
+        .teishi {
+            padding: 30px;
+            margin-left: 450px;
+            margin-right: 450px;
+            background-color: rgba(0, 0, 0, 0.5);   
+            text-align: center;
+            border-radius: 10px;
+            color: white;
+        }
+        .teishi button {
+            padding: 12px 25px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            
+        }
+        .movingpikachu{
+            position: absolute;
+            animation: moveLeftToRight 5s linear infinite;
+            
+        }
+            
+        
+@keyframes movingpikachu {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+        
+    </style>
+</head>
+<body>
+    <div class="movingpikachu">
+    <marquee><img src="imageswebdes/pikachu-ezgif.com-gif-maker.gif" alt="Pikachu"></marquee>
+</div>
+<div class="teishi">
+    
+    <p>Choose your favorite  <br>Programming Language: </p>
+    
+    <div>
+        <input type="radio" name="size" value="Javascript" id="xs"><label for="xs">Javascript</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="C++" id="s"><label for="s">C++</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="C#" id="m"><label for="m">C#</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="Python" id="l"><label for="l">Python</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="Java" id="xl"><label for="xl">Java</label>
+    </div>
+    <div>
+        <input type="radio" name="size" value="SQL" id="xxl"><label for="xxl">SQL</label>
+    </div>
+
+    <p>Select your Favorite IT fields</p>
+    <label for="c1">
+        <input type="checkbox" name="color" value="Game Developer" id="c1">Game Developer
+    </label>
+    <br>
+    <label for="c2">
+        <input type="checkbox" name="color" value="Front End Developer" id="c2">Front End Developer
+    </label>
+    <br>
+    <label for="c3">
+        <input type="checkbox" name="color" value="Software Developer" id="c3">Software Developer
+    </label>
+    
+    <p><button id="submitBtn">Submit</button></p>
+    
+</div>
+    
+
+    <script>
+        const submitBtn = document.querySelector('#submitBtn');
+
+        submitBtn.addEventListener('click', function() {
+            let selectedSize;
+            const radioButtons = document.querySelectorAll('input[name="size"]');
+            for (let i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    selectedSize = radioButtons[i].value;
+                    break;
+                }
+            }
+
+            let selectedColors = [];
+            const checkboxes = document.querySelectorAll('input[name="color"]:checked');
+            for (let i = 0; i < checkboxes.length; i++) {
+                selectedColors.push(checkboxes[i].value);
+            }
+
+            let message = '';
+            if (selectedSize) {
+                message += 'Programming Language: ' + selectedSize + '\n';
+            } else {
+                message += 'You haven\'t selected any.\n';
+            }
+
+            if (selectedColors.length > 0) {
+                message += 'IT FIELD: ' + selectedColors.join(', ');
+            } else {
+                message += 'You haven\'t selected any.';
+            }
+
+            alert(message);
+        });
+    </script>
+</body>
+</html>
